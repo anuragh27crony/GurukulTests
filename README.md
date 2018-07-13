@@ -11,7 +11,7 @@
 ```
 cd ${Repo.Dir}
 ```
-*Run Following command in a CMD prompt(Make sure Maven is configured correctly)*
+*Run Following command in a CMD prompt(Please make sure 'Maven' is configured correctly)*
 ```
 mvn clean verify
 ```
