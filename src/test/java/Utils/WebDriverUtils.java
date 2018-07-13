@@ -52,7 +52,7 @@ public class WebDriverUtils {
         String chromedriverProperty = "webdriver.chrome.driver";
 
         if (browserName.equalsIgnoreCase("firefox")) {
-            System.setProperty(geckodriverProperty, baseDir + "geckodriver.exe");
+//            System.setProperty(geckodriverProperty, baseDir + "geckodriver.exe");
             return new FirefoxDriver();
         } else {
             System.setProperty(chromedriverProperty, baseDir + "chromedriver.exe");

@@ -44,6 +44,9 @@ public class UserNavBar extends BasePageObject {
     @FindBy(how = How.PARTIAL_LINK_TEXT, using = "Log out")
     private WebElement logoutLink;
 
+    @FindBy(how = How.CLASS_NAME, using = "alert alert-success ng-scope ng-binding")
+    private WebElement welcomeMessage;
+
 
     public void navigateToStaffPage() {
         WebDriverUtils.click(webdriver, entitiesDropdownList);
@@ -76,7 +79,11 @@ public class UserNavBar extends BasePageObject {
     }
 
     public String getUserWelcomeMessage() {
-        return "";
+        return welcomeMessage.getText();
+    }
+
+    public boolean isUserNavBarAvailable() {
+        return entitiesDropdownList.isDisplayed();
     }
 
 }

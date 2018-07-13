@@ -9,7 +9,6 @@ import PageObjects.LoginPage;
 import PageObjects.PreLoginNavBar;
 import PageObjects.UserNavBar;
 import Utils.WebDriverUtils;
-import cucumber.api.PendingException;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
@@ -82,7 +81,7 @@ public class StaffStepsImpl {
     public void userCreatesANewStaff() {
         String validStaffName = "AnotherStaffMemberOne";
         expectedStaffData = new Staff(0, validStaffName, validBranchName);
-        staffPage.createNewStaff(validStaffName, validBranchName,Boolean.FALSE);
+        staffPage.createNewStaff(validStaffName, validBranchName, Boolean.FALSE);
     }
 
 
@@ -90,7 +89,7 @@ public class StaffStepsImpl {
     public void userCreatesANewStaffWithStaffNameExceedingCharLimit() throws Throwable {
         String staffNameExceedingCharLimit = "TEMPORINCIDIDUNTUTLABOREETDOLOREMAGNAALIQUAUTENIMADMINIMVENIAM";
         expectedStaffData = new Staff(0, staffNameExceedingCharLimit, validBranchName);
-        staffPage.createNewStaff(staffNameExceedingCharLimit, validBranchName,Boolean.TRUE);
+        staffPage.createNewStaff(staffNameExceedingCharLimit, validBranchName, Boolean.TRUE);
     }
 
 
@@ -98,7 +97,7 @@ public class StaffStepsImpl {
     public void userCreatesANewStaffWithStaffNameLessThanMinCharLimit() {
         String staffNameMinChars = "TDOL";
         expectedStaffData = new Staff(0, staffNameMinChars, validBranchName);
-        staffPage.createNewStaff(staffNameMinChars, validBranchName,Boolean.TRUE);
+        staffPage.createNewStaff(staffNameMinChars, validBranchName, Boolean.TRUE);
     }
 
     @When("^User creates a New Staff with Empty Branch$")
@@ -106,7 +105,7 @@ public class StaffStepsImpl {
         String validStaffName = "AnotherStaffMemberTwo";
         String emptyBranchName = "";
         expectedStaffData = new Staff(0, validStaffName, emptyBranchName);
-        staffPage.createNewStaff(validStaffName, emptyBranchName,Boolean.FALSE);
+        staffPage.createNewStaff(validStaffName, emptyBranchName, Boolean.FALSE);
     }
 
     @When("^User views a Staff details$")
@@ -174,9 +173,9 @@ public class StaffStepsImpl {
     }
 
     @Then("^New Staff should not be created$")
-    public void newStaffShouldNotBeCreated() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+    public void newStaffShouldNotBeCreated() {
+        Staff actualStaffData = staffPage.getStaffDetailsByName(expectedStaffData.getName());
+        assertThat(actualStaffData, is(nullValue()));
     }
 
     @Then("^staff details should be displayed correctly$")

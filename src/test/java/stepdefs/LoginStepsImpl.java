@@ -4,20 +4,15 @@ import PageObjects.LoginPage;
 import PageObjects.PreLoginNavBar;
 import PageObjects.UserNavBar;
 import Utils.WebDriverUtils;
-import cucumber.api.PendingException;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
-
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-
 import org.junit.Rule;
-
 import org.junit.rules.ExpectedException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -40,7 +35,7 @@ public class LoginStepsImpl {
     public ExpectedException thrown = ExpectedException.none();
 
     private String ErrMsgInvalidCredentials = "Authentication failed! Please check your credentials and try again.";
-    private String SuccessfulLoginWelcomeMsg = "";
+    private String SuccessfulLoginWelcomeMsg = "You are logged in as user \"admin\".";
 
     @Before
     public void beforeScenario() {
@@ -96,9 +91,8 @@ public class LoginStepsImpl {
     }
 
     @Then("^User should see UserNavigationBar$")
-    public void userShouldSeeUserNavigationBar() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+    public void userShouldSeeUserNavigationBar() {
+        assertThat(userHomepage.isUserNavBarAvailable(), equalTo(Boolean.TRUE));
     }
 
 
