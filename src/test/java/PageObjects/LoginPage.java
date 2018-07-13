@@ -29,6 +29,9 @@ public class LoginPage extends PreLoginNavBar {
     @FindBy(how = How.LINK_TEXT, using = "Did you forget your password?")
     private WebElement forgotPasswordPageLink;
 
+    @FindBy(how = How.CLASS_NAME, using = "alert alert-danger ng-scope")
+    private WebElement errMsgAuthenticationFailed;
+
 
     public void dologin(String username, String password, Boolean disableAutomaticLogin) {
         loginName.sendKeys(username);
@@ -51,7 +54,8 @@ public class LoginPage extends PreLoginNavBar {
 
 
     public String getErrorMsgInvalidCredentials() {
-        return "Authentication failed! Please check your credentials and try again.";
+//        return "Authentication failed! Please check your credentials and try again.";
+        return errMsgAuthenticationFailed.getText();
     }
 
 }

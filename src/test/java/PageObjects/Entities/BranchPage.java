@@ -58,6 +58,10 @@ public class BranchPage extends UserNavBar {
     private List<WebElement> branchList;
 
 
+    @FindBy(how = How.CLASS_NAME, using = "form-group has-error")
+    private WebElement errMsgCreateBranchWindow;
+
+
     private Branch parseBranchDetails(WebElement branchRow) {
         try {
             List<WebElement> branchDetails = branchRow.findElements(By.tagName("td"));
@@ -173,14 +177,14 @@ public class BranchPage extends UserNavBar {
     }
 
     public String getErrorMsgExceedingCharLimit() {
-        return "";
+        return errMsgCreateBranchWindow.findElement(By.className("help-block ng-scope")).getText();
     }
 
     public String getErrorMsgMinChar() {
-        return "";
+        return errMsgCreateBranchWindow.findElement(By.className("help-block ng-scope")).getText();
     }
 
     public String getErrorMsgInvalidBranchCode() {
-        return "";
+        return errMsgCreateBranchWindow.findElement(By.className("help-block ng-scope")).getText();
     }
 }
