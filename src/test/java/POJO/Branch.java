@@ -70,9 +70,6 @@ public class Branch {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", code='" + code + '\'' +
-                ", viewButton=" + viewButton +
-                ", editButton=" + editButton +
-                ", deleteButton=" + deleteButton +
                 '}';
     }
 }

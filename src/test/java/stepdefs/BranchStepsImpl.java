@@ -153,13 +153,17 @@ public class BranchStepsImpl {
     public void userDeletesAnExistingBranchWithNoStaffAssigned() {
         expectedBranchData = branchPage.listofBranchesDisplayed().get(2);
         branchPage.deleteBranch(expectedBranchData);
+        expectedBranchData = null;
     }
 
     @When("^User deletes an existing Branch with staff assigned$")
     public void userDeletesAnExistingBranchWithStaffAssigned() {
         String validStaffName = "RegularStaffName";
         expectedBranchData = branchPage.listofBranchesDisplayed().get(3);
+
+        userHomepage.navigateToStaffPage();
         staffPage.createNewStaff(validStaffName, expectedBranchData.getName(), Boolean.FALSE);
+        userHomepage.navigateToBranchPage();
 
         branchPage.deleteBranch(expectedBranchData);
     }

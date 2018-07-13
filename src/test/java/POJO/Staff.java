@@ -64,4 +64,13 @@ public class Staff {
         return isEqual;
     }
 
+    @Override
+    public String toString() {
+        return "Staff{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", branchName='" + branchName + '\'' +
+                '}';
+    }
+
 }
