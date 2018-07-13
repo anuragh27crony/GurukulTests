@@ -1,22 +1,13 @@
 package stepdefs;
 
 import POJO.Branch;
-import PageObjects.Entities.BranchPage;
-import PageObjects.Entities.StafffPage;
 import PageObjects.Entities.ViewBranchPage;
-import PageObjects.LoginPage;
-import PageObjects.PreLoginNavBar;
-import PageObjects.UserNavBar;
-import Utils.WebDriverUtils;
-import cucumber.api.java.After;
-import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.junit.Rule;
 import org.junit.rules.ExpectedException;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
 
 import java.util.List;
 
@@ -26,19 +17,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.core.Is.is;
 
-public class BranchStepsImpl {
-    private WebDriver webDriver = null;
-    private UserNavBar userHomepage = null;
-    private PreLoginNavBar preLoginNavBar = null;
-    private LoginPage loginPage = null;
-    private BranchPage branchPage = null;
-    private ViewBranchPage viewBranchPage = null;
-    private StafffPage staffPage = null;
-    private static String appHomeURL = "http://localhost:8080";
-
-    private static String validUsername = "admin";
-    private static String validPassword = "admin";
-
+public class BranchStepsImpl extends BaseStepsImpl {
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();
@@ -49,31 +28,6 @@ public class BranchStepsImpl {
     private Branch expectedBranchData = null;
     private List<Branch> expectedBranchList = null;
 
-    @Before
-    public void beforeScenario() {
-        System.out.println("Entering Before Scenario");
-        this.webDriver = WebDriverUtils.initializeDriver("firefox");
-        this.webDriver.get(appHomeURL);
-
-        this.userHomepage = new UserNavBar(webDriver);
-        this.preLoginNavBar = new PreLoginNavBar(webDriver);
-        this.loginPage = new LoginPage(webDriver);
-        this.branchPage = new BranchPage(webDriver);
-        this.viewBranchPage = new ViewBranchPage(webDriver);
-        this.staffPage = new StafffPage(webDriver);
-        System.out.println("Exiting Before Scenario");
-    }
-
-    @After
-    public void afterScenario() {
-        this.webDriver.close();
-    }
-
-    @Given("^User Login successfully$")
-    public void userLoginSuccessfully() {
-        preLoginNavBar.navigateToLoginPage();
-        loginPage.dologin(validUsername, validPassword, Boolean.TRUE);
-    }
 
     @Given("^User navigates to Branch Page$")
     public void userNavigatesToBranchPage() {

@@ -1,23 +1,13 @@
 package stepdefs;
 
 import POJO.Staff;
-import PageObjects.Entities.BranchPage;
-import PageObjects.Entities.StafffPage;
-import PageObjects.Entities.ViewBranchPage;
 import PageObjects.Entities.ViewStaffPage;
-import PageObjects.LoginPage;
-import PageObjects.PreLoginNavBar;
-import PageObjects.UserNavBar;
-import Utils.WebDriverUtils;
 import cucumber.api.PendingException;
-import cucumber.api.java.After;
-import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.junit.Rule;
 import org.junit.rules.ExpectedException;
-import org.openqa.selenium.WebDriver;
 
 import java.util.List;
 
@@ -27,44 +17,15 @@ import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNull.nullValue;
 
-public class StaffStepsImpl {
-    private WebDriver webDriver = null;
-    private UserNavBar userHomepage = null;
-    private PreLoginNavBar preLoginNavBar = null;
-    private LoginPage loginPage = null;
-    private BranchPage branchPage = null;
-    private ViewBranchPage viewBranchPage = null;
-    private StafffPage staffPage = null;
-    private static String appHomeURL = "http://localhost:8080";
+public class StaffStepsImpl extends BaseStepsImpl {
 
     private String validBranchName = "ENG004";
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
-    private String errMsgMaxCharLimit = "";
-    private String errMsgMinChars = "";
-    private String errMsgInvalidBranchCode = "";
     private Staff expectedStaffData = null;
     private List<Staff> expectedStaffList = null;
-
-    @Before
-    public void beforeScenario() {
-        this.webDriver = WebDriverUtils.initializeDriver("firefox");
-        this.webDriver.get(appHomeURL);
-
-        this.userHomepage = new UserNavBar(webDriver);
-        this.preLoginNavBar = new PreLoginNavBar(webDriver);
-        this.loginPage = new LoginPage(webDriver);
-        this.branchPage = new BranchPage(webDriver);
-        this.viewBranchPage = new ViewBranchPage(webDriver);
-        this.staffPage = new StafffPage(webDriver);
-    }
-
-    @After
-    public void afterScenario() {
-        this.webDriver.close();
-    }
 
     @Given("^User navigates to Staff Page$")
     public void userNavigatesToStaffPage() {
