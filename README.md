@@ -7,7 +7,11 @@
   - OS: Windows 7+
   - Browsers : Firefox(Default)/Chrome
 
-*Run Following command in a CMD prompt*
+*Navigate to Repo Directory*
+```
+cd ${Repo.Dir}
+```
+*Run Following command in a CMD prompt(Make sure Maven is configured correctly)*
 ```
 mvn clean verify
 ```
